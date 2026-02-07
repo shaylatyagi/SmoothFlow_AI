@@ -1,0 +1,495 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    background: white;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 40px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 0.9em;
+    opacity: 0.95;
+}
+
+/* Upload Section */
+.upload-section {
+    padding: 20px 40px;
+    text-align: center;
+    background: #fafbfc;
+    border-bottom: 1px solid #e1e4e8;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #667eea;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.upload-btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+#file-name {
+    display: block;
+    margin-top: 10px;
+    color: #666;
+    font-size: 0.85em;
+}
+
+/* Main Content - Split Layout */
+.main-content {
+    display: flex;
+    height: calc(100vh - 300px);
+    min-height: 600px;
+}
+
+/* PDF Viewer (Left - 60%) */
+.pdf-viewer {
+    flex: 0 0 60%;
+    padding: 30px;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    border-right: 1px solid #e1e4e8;
+}
+
+#pdf-canvas {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    background: white;
+}
+
+/* Reading Panel (Right - 40%) - MS Edge Style */
+.reading-panel {
+    flex: 0 0 40%;
+    background: white;
+    padding: 25px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.panel-header {
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.panel-header h2 {
+    font-size: 1.5em;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Voice Settings */
+.voice-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.setting-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.setting-group label {
+    font-size: 0.9em;
+    font-weight: 600;
+    color: #444;
+}
+
+.styled-select {
+    padding: 10px 15px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    font-size: 0.95em;
+    background: white;
+    cursor: pointer;
+    transition: border 0.3s;
+}
+
+.styled-select:hover, .styled-select:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+/* Speed Slider */
+#speed-slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #e1e4e8;
+    outline: none;
+    cursor: pointer;
+}
+
+#speed-slider::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #667eea;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#speed-slider::-webkit-slider-thumb:hover {
+    background: #5568d3;
+    transform: scale(1.2);
+}
+
+#speed-value {
+    color: #667eea;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.speed-markers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75em;
+    color: #888;
+    margin-top: 5px;
+}
+
+/* Checkbox */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+/* Playback Controls */
+.playback-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.control-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #f0f2f5;
+    color: #333;
+}
+
+.control-icon:hover:not(:disabled) {
+    background: #e1e4e8;
+    transform: scale(1.1);
+}
+
+.control-icon:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.play-large {
+    width: 60px;
+    height: 60px;
+    background: #28a745;
+    color: white;
+    font-size: 1.5em;
+}
+
+.play-large:hover:not(:disabled) {
+    background: #218838;
+}
+
+#pause-btn {
+    background: #ffc107;
+    color: white;
+}
+
+#pause-btn:hover:not(:disabled) {
+    background: #e0a800;
+}
+
+#stop-btn {
+    background: #dc3545;
+    color: white;
+}
+
+#stop-btn:hover:not(:disabled) {
+    background: #c82333;
+}
+
+/* Progress Info */
+.progress-info-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.info-label {
+    font-size: 0.8em;
+    color: #666;
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 1.3em;
+    color: #667eea;
+    font-weight: 700;
+}
+
+/* Current Text Display */
+.current-text-display {
+    background: #fff9e6;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    border-radius: 6px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.display-header {
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #856404;
+    margin-bottom: 8px;
+}
+
+#current-text {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Hint Box */
+.hint-box {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    color: #0c5aa6;
+}
+
+/* Page Navigation */
+.page-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background: #fafbfc;
+    border-top: 1px solid #e1e4e8;
+}
+
+.nav-btn {
+    padding: 10px 25px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #5568d3;
+    transform: translateY(-2px);
+}
+
+.nav-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+#page-info {
+    font-weight: 600;
+    color: #333;
+    font-size: 1em;
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s;
+}
+
+.popup.hidden {
+    display: none;
+}
+
+.popup-content {
+    background: white;
+    padding: 0;
+    border-radius: 12px;
+    max-width: 550px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s;
+}
+
+.popup-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 25px;
+    border-radius: 12px 12px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup-header h3 {
+    font-size: 1.4em;
+    margin: 0;
+}
+
+.close-popup {
+    font-size: 1.5em;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: opacity 0.3s;
+}
+
+.close-popup:hover {
+    opacity: 1;
+}
+
+.selected-term {
+    padding: 15px 25px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e1e4e8;
+    font-size: 0.95em;
+}
+
+.selected-term strong {
+    color: #667eea;
+}
+
+#selected-term {
+    color: #333;
+    font-weight: 600;
+}
+
+.explanation-body {
+    padding: 20px 25px;
+}
+
+#explanation-text {
+    color: #333;
+    line-height: 1.7;
+    font-size: 1.05em;
+}
+
+/* Status Bar */
+.status-bar {
+    padding: 12px 40px;
+    background: #667eea;
+    color: white;
+    text-align: center;
+    font-weight: 500;
+    font-size: 0.9em;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to { 
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-content {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .pdf-viewer {
+        flex: 0 0 auto;
+        border-right: none;
+        border-bottom: 1px solid #e1e4e8;
+    }
+    
+    .reading-panel {
+        flex: 0 0 auto;
+    }
+}

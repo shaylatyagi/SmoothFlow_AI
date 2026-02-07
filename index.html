@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmoothFlow AI - Advanced PDF Reader</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>📚 SmoothFlow AI</h1>
+            <p>AI-Powered PDF Tutor - Better than MS Edge</p>
+        </header>
+
+        <!-- File Upload Section -->
+        <div class="upload-section">
+            <label for="pdf-upload" class="upload-btn">
+                📄 Choose PDF File
+                <input type="file" id="pdf-upload" accept=".pdf" hidden>
+            </label>
+            <span id="file-name">No file selected</span>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- PDF Viewer (Left Side) -->
+            <div class="pdf-viewer" id="pdf-viewer">
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+
+            <!-- Reading Panel (Right Side - MS Edge Style) -->
+            <div class="reading-panel" id="reading-panel">
+                <div class="panel-header">
+                    <h2>🎧 Read Aloud</h2>
+                </div>
+
+                <!-- Voice Settings -->
+                <div class="voice-settings">
+                    <div class="setting-group">
+                        <label>🗣️ Choose Voice</label>
+                        <select id="voice-select" class="styled-select">
+                            <option value="">Loading voices...</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-group">
+                        <label>⚡ Reading Speed: <span id="speed-value">1.0x</span></label>
+                        <input type="range" id="speed-slider" min="0.5" max="2.0" step="0.1" value="1.0">
+                        <div class="speed-markers">
+                            <span>0.5x</span>
+                            <span>1.0x</span>
+                            <span>1.5x</span>
+                            <span>2.0x</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-group checkbox-group">
+                        <label>
+                            <input type="checkbox" id="auto-continue" checked>
+                            <span>📖 Auto-continue to next page</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Playback Controls -->
+                <div class="playback-controls">
+                    <button id="play-btn" class="control-icon play-large">▶️</button>
+                    <button id="pause-btn" class="control-icon" disabled>⏸️</button>
+                    <button id="stop-btn" class="control-icon" disabled>⏹️</button>
+                </div>
+
+                <!-- Progress Info -->
+                <div class="progress-info-box">
+                    <div class="info-item">
+                        <span class="info-label">Current Page:</span>
+                        <span class="info-value" id="current-page-display">1</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Words on Page:</span>
+                        <span class="info-value" id="word-count">0</span>
+                    </div>
+                </div>
+
+                <!-- Current Text Display -->
+                <div class="current-text-display">
+                    <div class="display-header">📝 Currently Reading:</div>
+                    <p id="current-text">Upload a PDF and click Play to start...</p>
+                </div>
+
+                <!-- Hint -->
+                <div class="hint-box">
+                    💡 <strong>Tip:</strong> Highlight any text to get instant Hinglish explanation!
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Navigation -->
+        <div class="page-navigation">
+            <button id="prev-page" class="nav-btn">⬅️ Previous</button>
+            <span id="page-info">Page 0 of 0</span>
+            <button id="next-page" class="nav-btn">Next ➡️</button>
+        </div>
+
+        <!-- Explanation Popup -->
+        <div id="explanation-popup" class="popup hidden">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h3>💡 Hinglish Explanation</h3>
+                    <span class="close-popup" id="close-popup">✖️</span>
+                </div>
+                <div class="selected-term">
+                    <strong>Selected:</strong> <span id="selected-term"></span>
+                </div>
+                <div class="explanation-body">
+                    <p id="explanation-text">Loading...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span id="status-text">🚀 Upload a PDF to start!</span>
+        </div>
+    </div>
+
+    <!-- PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
